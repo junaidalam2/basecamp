@@ -29,11 +29,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :profile %><br />
-    <%= f.text_field :profile, :value => "user", :disabled => true %>
+    <%= f.hidden_field :profile, :value => "user" %>
   </div>
-
-
 
   <div class="field">
     <%= f.label :password %>
