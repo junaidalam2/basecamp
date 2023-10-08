@@ -17,16 +17,6 @@
   </div>
 
   <div>
-    <%= form.label :lead_first_name, style: "display: block" %>
-    <%= form.text_field :lead_first_name %>
-  </div>
-
-  <div>
-    <%= form.label :lead_last_name, style: "display: block" %>
-    <%= form.text_field :lead_last_name %>
-  </div>
-
-  <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_field :description %>
   </div>
@@ -37,8 +27,10 @@
   </div>
 
   <div>
-    <%= form.label :creation_date, style: "display: block" %>
-    <%= form.datetime_field :creation_date %>
+  
+    <%#=  form.hidden_field :user_id, :value => session[:current_user_id] %> 
+    <%= form.label :project_lead, style: "display: block" %>
+    <%= form.select :user_id, @user_array.map { |element| [element["fullName"], element["id"]]}, include_blank: true %>
   </div>
 
   <div>

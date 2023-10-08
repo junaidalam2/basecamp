@@ -14,6 +14,17 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+
+    user_all = User.all 
+    @user_array = []
+    
+    user_all.each do | record |
+      user_hash = Hash.new
+      user_hash["id"] = record.id
+      user_hash["fullName"] = "#{record.first_name} #{record.last_name}"
+      @user_array.push(user_hash)
+    end
+
   end
 
   # GET /projects/1/edit
@@ -66,6 +77,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :lead_first_name, :lead_last_name, :description, :time_frame_for_completion, :creation_date)
+      params.require(:project).permit(:name, :description, :time_frame_for_completion, :creation_date, :user_id)
     end
 end
