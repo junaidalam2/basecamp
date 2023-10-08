@@ -14,21 +14,12 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-
-    user_all = User.all 
-    @user_array = []
-    
-    user_all.each do | record |
-      user_hash = Hash.new
-      user_hash["id"] = record.id
-      user_hash["fullName"] = "#{record.first_name} #{record.last_name}"
-      @user_array.push(user_hash)
-    end
-
+    create_array_of_hashes() 
   end
 
   # GET /projects/1/edit
   def edit
+    create_array_of_hashes()
   end
 
   # POST /projects or /projects.json
@@ -47,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   # PATCH/PUT /projects/1 or /projects/1.json
-  def update
+  def update    
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
@@ -79,4 +70,21 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description, :time_frame_for_completion, :creation_date, :user_id)
     end
+
+    # Populate drop down for new and edit methods
+    def create_array_of_hashes 
+
+      user_all = User.all 
+      @user_array = []
+      
+      user_all.each do | record |
+        user_hash = Hash.new
+        user_hash["id"] = record.id
+        user_hash["fullName"] = "#{record.first_name} #{record.last_name}"
+        @user_array.push(user_hash)
+      end
+
+    end
+
+
 end
