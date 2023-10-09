@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
-        # session[:current_user_id] = @user.id
+        session[:current_user_id] = @user.id
         stored_location_for(resource) || operations_landing_path
     end
 
-    #def after_sign_out_path_for(resource)
-    #   session.clear
-    #   root_path
-    #end
+    def after_sign_out_path_for(resource)
+       session.clear
+       root_path
+    end
 
 end

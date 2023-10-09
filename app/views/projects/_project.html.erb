@@ -19,4 +19,11 @@
     <%= project.created_at %>
   </p>
 
+
+  <p>
+    <strong>Project lead:</strong>
+    <% user_instance = User.find(project.user_id) %>
+    <%= user_instance.first_name%> <%= user_instance.last_name%>
+  </p>
+
 </div>
