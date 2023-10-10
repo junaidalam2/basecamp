@@ -14,16 +14,17 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    create_array_of_hashes() 
+    create_array_of_hashes_users() 
   end
 
   # GET /projects/1/edit
   def edit
-    create_array_of_hashes()
+    create_array_of_hashes_users()
   end
 
   # POST /projects or /projects.json
   def create
+    create_array_of_hashes_users()
     @project = Project.new(project_params)
 
     respond_to do |format|
@@ -60,7 +61,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -73,7 +74,8 @@ class ProjectsController < ApplicationController
     end
 
     # Populate drop down for new and edit methods
-    def create_array_of_hashes 
+=begin
+    def create_array_of_hashes_users 
 
       user_all = User.all 
       @user_array = []
@@ -86,5 +88,6 @@ class ProjectsController < ApplicationController
       end
 
     end
+=end
 
 end

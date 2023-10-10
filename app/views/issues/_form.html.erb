@@ -11,9 +11,10 @@
     </div>
   <% end %>
 
+
   <div>
-    <%= form.label :creation_date, style: "display: block" %>
-    <%= form.datetime_field :creation_date %>
+    <%= form.label :project, style: "display: block" %>
+    <%= form.select :project_id, @project_array.map { |element| [element["name"], element["id"]]}, include_blank: false %>
   </div>
 
   <div>
@@ -23,12 +24,12 @@
 
   <div>
     <%= form.label :detailed_description, style: "display: block" %>
-    <%= form.text_field :detailed_description %>
+    <%= form.text_area :detailed_description %>
   </div>
 
   <div>
     <%= form.label :steps_to_reproduce, style: "display: block" %>
-    <%= form.text_field :steps_to_reproduce %>
+    <%= form.text_area :steps_to_reproduce %>
   </div>
 
   <div>
@@ -43,18 +44,20 @@
 
   <div>
     <%= form.label :assigned_to, style: "display: block" %>
-    <%= form.text_field :assigned_to %>
+    <%= form.select :assigned_to, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: false %>
   </div>
 
   <div>
     <%= form.label :target_resolution_date, style: "display: block" %>
-    <%= form.date_field :target_resolution_date %>
+    <%= form.date_field :target_resolution_date, min: Date.today %>
   </div>
 
   <div>
     <%= form.label :resolution_date, style: "display: block" %>
     <%= form.text_field :resolution_date %>
   </div>
+
+  <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
 
   <div>
     <%= form.submit %>

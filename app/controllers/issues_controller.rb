@@ -14,14 +14,20 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    create_array_of_hashes_users()
+    create_array_of_hashes_projects()
   end
 
   # GET /issues/1/edit
   def edit
+    create_array_of_hashes_users()
+    create_array_of_hashes_projects()
   end
 
   # POST /issues or /issues.json
   def create
+    create_array_of_hashes_users()
+    create_array_of_hashes_projects()
     @issue = Issue.new(issue_params)
 
     respond_to do |format|
@@ -66,6 +72,7 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.require(:issue).permit(:creation_date, :short_description, :detailed_description, :steps_to_reproduce, :status, :priority, :assigned_to, :target_resolution_date, :resolution_date)
+      params.require(:issue).permit(:short_description, :detailed_description, :steps_to_reproduce, :status, :priority, :assigned_to, :target_resolution_date, :resolution_date)
     end
+
 end

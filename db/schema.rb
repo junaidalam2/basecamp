@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_003428) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_135702) do
   create_table "comments", force: :cascade do |t|
     t.string "comment"
     t.datetime "created_at", null: false
@@ -20,19 +20,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_003428) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.datetime "creation_date"
     t.string "short_description"
     t.string "detailed_description"
     t.string "steps_to_reproduce"
     t.string "status"
     t.string "priority"
-    t.string "assigned_to"
+    t.integer "assigned_to"
     t.date "target_resolution_date"
     t.string "resolution_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.integer "user_id"
+    t.integer "creator_user_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
