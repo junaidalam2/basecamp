@@ -28,11 +28,11 @@
 
   <div>
     <%= form.label :project_lead, style: "display: block" %>
-    <%= form.select :user_id, @user_array.map { |element| [element["fullName"], element["id"]]}, include_blank: true %>
+    <%= form.select :user_id, @user_array.map { |element| [element["fullName"], element["id"]]}, include_blank: false %>
   </div>
 
   <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
-  
+
   <div>
     <%= form.submit %>
   </div>
