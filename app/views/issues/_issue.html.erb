@@ -1,9 +1,21 @@
 <div id="<%= dom_id issue %>">
+
   <p>
-    <strong>Creation date:</strong>
-    <%= issue.creation_date %>
+    <strong>Project:</strong>
+    <% project_instance = Project.find(issue.project_id) %>
+    <%= project_instance.name%>
   </p>
 
+  <p>
+    <strong>Last upated:</strong>
+    <%= issue.updated_at %>
+  </p>
+
+  <p>
+    <strong>Creation date:</strong>
+    <%= issue.created_at %>
+  </p>
+ 
   <p>
     <strong>Short description:</strong>
     <%= issue.short_description %>
@@ -35,13 +47,20 @@
   </p>
 
   <p>
-    <strong>Target resolution date:</strong>
-    <%= issue.target_resolution_date %>
+    <strong>Resolution date:</strong>
+    <%= issue.resolution_date %>
   </p>
 
   <p>
-    <strong>Resolution date:</strong>
-    <%= issue.resolution_date %>
+    <strong>Contact:</strong>
+    <% user_instance_contact = User.find(issue.contact_user_id) %>
+    <%= user_instance_contact.first_name%> <%= user_instance_contact.last_name%>: <%= user_instance_contact.email%>
+  </p>
+
+  <p>
+    <strong>Ticket created by:</strong>
+    <% user_instance = User.find(issue.user_id) %>
+    <%= user_instance.first_name%> <%= user_instance.last_name%>
   </p>
 
 </div>

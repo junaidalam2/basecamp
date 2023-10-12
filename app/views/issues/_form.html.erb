@@ -33,31 +33,25 @@
   </div>
 
   <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.hidden_field :status, :value => "open" %>
   </div>
 
   <div>
     <%= form.label :priority, style: "display: block" %>
-    <%= form.text_field :priority %>
+    <%= form.select :priority, ["normal", "medium", "urgent"] %>
   </div>
 
   <div>
     <%= form.label :assigned_to, style: "display: block" %>
-    <%= form.select :assigned_to, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: false %>
+    <%= form.select :assigned_to, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
   </div>
+
+  <%= form.hidden_field :user_id, :value => session[:current_user_id] %> 
 
   <div>
-    <%= form.label :target_resolution_date, style: "display: block" %>
-    <%= form.date_field :target_resolution_date, min: Date.today %>
+    <%= form.label :contact_person, style: "display: block" %>
+    <%= form.select :contact_user_id, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
   </div>
-
-  <div>
-    <%= form.label :resolution_date, style: "display: block" %>
-    <%= form.text_field :resolution_date %>
-  </div>
-
-  <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
 
   <div>
     <%= form.submit %>

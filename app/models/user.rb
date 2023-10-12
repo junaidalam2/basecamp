@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
     has_and_belongs_to_many  :project
     has_many :issue
+  validates :first_name, :last_name, :position, :department, presence: true
+  
 end
