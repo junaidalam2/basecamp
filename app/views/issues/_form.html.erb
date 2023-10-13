@@ -53,6 +53,13 @@
     <%= form.select :contact_user_id, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
   </div>
 
+  <div class='field'>
+    <%= form.fields_for :comments do |builder| %>
+      <%#= builder.text_field :comment %>
+      <%= render "form", comment: @comment %>
+    <% end %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

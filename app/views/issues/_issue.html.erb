@@ -17,6 +17,11 @@
   </p>
  
   <p>
+    <strong>Resolution date:</strong>
+    <%= issue.resolution_date %>
+  </p>
+
+  <p>
     <strong>Short description:</strong>
     <%= issue.short_description %>
   </p>
@@ -43,12 +48,8 @@
 
   <p>
     <strong>Assigned to:</strong>
-    <%= issue.assigned_to %>
-  </p>
-
-  <p>
-    <strong>Resolution date:</strong>
-    <%= issue.resolution_date %>
+    <% user_instance_assigned = User.find(issue.assigned_to) %>
+    <%= user_instance_assigned.first_name%> <%= user_instance_assigned.last_name%>
   </p>
 
   <p>
