@@ -14,6 +14,7 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    @issue.comment.build 
     create_array_of_hashes_users()
     create_array_of_hashes_projects()
   end

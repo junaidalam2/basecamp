@@ -64,17 +64,11 @@
   
   <tbody class='field'>
     <%= form.fields_for :comments do |comments_form| %>
-      <%#= comments_form.check_box :_destroy %>
-      <%#= comments_form.label :comment, style: "display: block" %>
-      <tr>
-        <td>
-          <%= comments_form.input :_destroy, as: :hidden %>
-          <%= link_to 'Delete', '#', class: 'remove_record' %>
-        </td>
-        <td><%= comments_form.text_area :comment %></td>
-      </tr>
+      <%= render 'issues/comment_fields', form: comments_form %>
+      <td><%#= comments_form.text_area :comment %></td>
     <% end %>
   </tbody>
+    <%= link_to_add_fields "Add Comment", form, :comment %>
 </table>
 
   <div>
