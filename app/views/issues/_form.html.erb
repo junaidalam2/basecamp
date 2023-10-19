@@ -63,7 +63,7 @@
   </thead>
   
   <tbody class='field'>
-    <%= form.fields_for :comments do |comments_form| %>
+    <%= form.fields_for :comment do |comments_form| %>
       <%= render 'issues/comment_fields', form: comments_form %>
       <td><%#= comments_form.text_area :comment %></td>
     <% end %>
