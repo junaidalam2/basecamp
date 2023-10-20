@@ -54,24 +54,26 @@
   </div>
 
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Comment</th>
-      <th>Submitted By</th>
-    </tr>
-  </thead>
-  
-  <tbody class='field'>
+
+  <div class='field'>
+
+  <%# <ul> %>
     <%= form.fields_for :comment do |comments_form| %>
       <%= render 'issues/comment_fields', form: comments_form %>
-      <td><%#= comments_form.text_area :comment %></td>
-    <% end %>
-  </tbody>
-    <%= link_to_add_fields "Add Comment", form, :comment %>
-</table>
 
-  <div>
+      <%# <li>  %>
+        <%#= comments_form.label :comment %>
+        <%#= comments_form.text_area :comment %>
+        <%#= comments_form.hidden_field :_destroy %>
+        <%#= link_to "remove", '#', class: "remove_fields" %> 
+      <%#  </li>  %>
+    
+    <% end %>
+  <%# </ul> %>
+  <%= link_to_add_fields "Add Comment", form, :comment %>
+  </div>
+
+<div>
     <%= form.submit %>
   </div>
 <% end %>

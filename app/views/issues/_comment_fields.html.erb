@@ -1,9 +1,13 @@
-      <tr>
-        <td><%= form.text_area :comment %></td>
-        <td>
-          <%#= comments_form.input :_destroy, as: :hidden %>
-          <%#= link_to 'Delete', '#', class: 'remove_record' %>
-           <%= form.hidden_field :_destroy %>
-          <%= link_to "remove", '#', class: "remove_fields" %>  
-        </td>
-      </tr>
+
+
+
+
+
+<fieldset>
+
+  <%= form.label :comment %>
+  <%= form.text_area :comment %>
+  <%= form.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %> 
+
+</fieldset>
