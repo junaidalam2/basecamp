@@ -1,0 +1,79 @@
+<%= form_with(model: issue) do |form| %>
+  <% if issue.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+        <% issue.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :project, style: "display: block" %>
+    <%= form.select :project_id, @project_array.map { |element| [element["name"], element["id"]]}, include_blank: false %>
+  </div>
+
+  <div>
+    <%= form.label :short_description, style: "display: block" %>
+    <%= form.text_field :short_description %>
+  </div>
+
+  <div>
+    <%= form.label :detailed_description, style: "display: block" %>
+    <%= form.text_area :detailed_description %>
+  </div>
+
+  <div>
+    <%= form.label :steps_to_reproduce, style: "display: block" %>
+    <%= form.text_area :steps_to_reproduce %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :status, :value => "open" %>
+  </div>
+
+  <div>
+    <%= form.label :priority, style: "display: block" %>
+    <%= form.select :priority, ["normal", "medium", "urgent"] %>
+  </div>
+
+  <div>
+    <%= form.label :assigned_to, style: "display: block" %>
+    <%= form.select :assigned_to, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
+  </div>
+
+  <%= form.hidden_field :user_id, :value => session[:current_user_id] %> 
+
+  <div>
+    <%= form.label :contact_person, style: "display: block" %>
+    <%= form.select :contact_user_id, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
+  </div>
+
+
+
+  <div class='field'>
+
+  <%# <ul> %>
+    <%= form.fields_for :comment do |comments_form| %>
+      <%= render 'issues/comment_fields', form: comments_form %>
+
+      <%# <li>  %>
+        <%#= comments_form.label :comment %>
+        <%#= comments_form.text_area :comment %>
+        <%#= comments_form.hidden_field :_destroy %>
+        <%#= link_to "remove", '#', class: "remove_fields" %> 
+      <%#  </li>  %>
+    
+    <% end %>
+  <%# </ul> %>
+  <%= link_to_add_fields "Add Comment", form, :comment %>
+  </div>
+
+<div>
+    <%= form.submit %>
+  </div>
+<% end %>
