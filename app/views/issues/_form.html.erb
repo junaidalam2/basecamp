@@ -1,18 +1,18 @@
-<%= simple_form_for(@issue) do |form| %>
-  <%= form.error_notification %>
-  <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+<%= simple_form_for(@issue) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   
   
   <div class="form-inputs">
-    <%= form.select :project_id, @project_array.map { |element| [element["name"], element["id"]]}, include_blank: false %>
-    <%= form.input :short_description %>
-    <%= form.input :detailed_description, as: :text %>
-    <%= form.input :steps_to_reproduce, as: :text  %>
-    <%= form.hidden_field :status, :value => "open" %>
-    <%= form.input :priority, :collection => ["normal", "medium", "urgent"] %>
-    <%= form.select :assigned_to, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
-    <%= form.hidden_field :user_id, :value => session[:current_user_id] %> 
-    <%= form.select :contact_user_id, @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
+    <%= f.input :project_id, collection: @project_array.map { |element| [element["name"], element["id"]]}, include_blank: false %>
+    <%= f.input :short_description %>
+    <%= f.input :detailed_description, as: :text %>
+    <%= f.input :steps_to_reproduce, as: :text  %>
+    <%= f.hidden_field :status, :value => "open" %>
+    <%= f.input :priority, :collection => ["normal", "medium", "urgent"] %>
+    <%= f.input :assigned_to, collection: @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
+    <%= f.hidden_field :user_id, :value => session[:current_user_id] %> 
+    <%= f.input :contact_user_id, :label => "Project contact", collection: @user_array.map { |element| [element["full_name"], element["id"]]}, include_blank: true %>
   </div>
 
 
@@ -20,8 +20,8 @@
   <div class='comment'>
 
   <%# <ul> %>
-    <%= form.simple_fields_for :comment do |comment| %>
-      <%= render 'issues/comment_fields', form: comment %>
+    <%= f.simple_fields_for :comments do |comment| %>
+      <%= render 'issues/comment_fields', f: comment %>
 
       <%# <li>  %>
         <%#= comments_form.label :comment %>
@@ -31,14 +31,14 @@
       <%#  </li>  %>
     
     <% end %>
-  <%# </ul> %>
+     <%# </ul> %>
      <div class="links">
-      <%= link_to_add_fields "Add Comment", form, :comment %>
+      <%= link_to_add_association "Add Comment", f, :comments, partial: 'issues/comment_fields'  %>
     </div>
 
   </div>
  
  <div class="form-actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
