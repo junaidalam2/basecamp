@@ -1,29 +1,21 @@
 <div id="<%= dom_id project %>">
-  <p>
-    <strong>Name:</strong>
-    <%= project.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= project.description %>
-  </p>
-
-  <p>
-    <strong>Time frame for completion:</strong>
-    <%= project.time_frame_for_completion %>
-  </p>
-
-  <p>
-    <strong>Creation date:</strong>
-    <%= project.created_at %>
-  </p>
-
-
-  <p>
-    <strong>Project lead:</strong>
-    <% user_instance = User.find(project.user_id) %>
-    <%= user_instance.first_name%> <%= user_instance.last_name%>
-  </p>
+  
+    <td>
+      <%= project.name %>
+    </td>
+    <td>
+      <%= project.description %>
+    </td>
+    <td>
+      <%= project.time_frame_for_completion %>
+    </td>
+    <td>
+      <%= project.created_at %>
+    </td>
+    <td>
+      <% user_instance = User.find(project.user_id) %>
+      <%= user_instance.first_name%> <%= user_instance.last_name%>
+    </td>
 
 </div>
+
