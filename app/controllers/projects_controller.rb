@@ -15,11 +15,15 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     create_array_of_hashes_users() 
+
+    @submit_button_text = "Create project"
+
   end
 
   # GET /projects/1/edit
   def edit
     create_array_of_hashes_users()
+    @submit_button_text = "Update project"
   end
 
   # POST /projects or /projects.json
@@ -36,6 +40,7 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /projects/1 or /projects/1.json
