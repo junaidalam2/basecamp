@@ -50,12 +50,17 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
 
+    if !@user.deactivated
+      @user.deactivated = true
+      @user.save
+    end
+    # @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: "User was successfully deactivated." }
       format.json { head :no_content }
     end
+    after_sign_out_path_for(@user)
   end
 
   private

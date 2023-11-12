@@ -6,12 +6,18 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
         #devise_parameter_sanitizer.for(:account_update).push(:name, :surname, :email, :avatar)
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name,:title, :department, :profile])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name,:title, :department, :profile, :deactivated])
     end
 
     def after_sign_in_path_for(resource)
-        session[:current_user_id] = @user.id
-        stored_location_for(resource) || operations_landing_path
+
+        if !@user.deactivated
+            session[:current_user_id] = @user.id
+            stored_location_for(resource) || operations_landing_path
+        else
+            flash[:notice] = "User has previously deactivated. Please contact your system administrator." 
+            after_sign_out_path_for(resource)
+        end
     end
 
     def after_sign_out_path_for(resource)
