@@ -33,13 +33,13 @@
   </div>
   <div class="row mb-3">
     <div>
-    <%= form.select :profile, {collection: ["user", "admin"]}, {class: "form-control w-25"}, {placeholder: "Profile"} %>
+    <%= form.select :profile, [:user, :admin], {}, { class: "form-control w-25" } %>
     </div>
   </div>
 
   <div class="row mb-3">
     <div>
-    <%= form.submit "Create user", :class => 'btn btn-info text-white' %>
+    <%= form.submit @submit_user_button_text, :class => 'btn btn-info text-white' %>
     </div>
   </div>
 
