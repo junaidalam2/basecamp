@@ -1,27 +1,30 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>First name:</strong>
+  
+  <td>
     <%= user.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
+  </td>
+  <td>
     <%= user.last_name %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
+  </td>
+  <td>
     <%= user.title %>
-  </p>
-
-  <p>
-    <strong>Department:</strong>
+  </td>
+  <td>
     <%= user.department %>
-  </p>
-
-  <p>
-    <strong>Profile:</strong>
+  </td>
+  <td>
     <%= user.profile %>
-  </p>
+  </td>
+  <td>
+      <% if !user.deactivated %>
+        <span class="badge rounded-pill text-bg-info text-white">
+          <%= "Active" %>
+        </span>
+      <% else %>
+        <span class="badge rounded-pill text-bg-danger">
+          <%= "Inactive" %>
+        </span>
+      <% end %>
+  </td>
 
 </div>

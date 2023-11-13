@@ -32,12 +32,13 @@ class ApplicationController < ActionController::Base
         @user_array = []
         
         user_all.each do | record |
-            user_hash = Hash.new
-            user_hash["id"] = record.id
-            user_hash["full_name"] = "#{record.first_name} #{record.last_name}"
-            @user_array.push(user_hash)
+            if !record.deactivated
+                user_hash = Hash.new
+                user_hash["id"] = record.id
+                user_hash["full_name"] = "#{record.first_name} #{record.last_name}"
+                @user_array.push(user_hash)
+            end
         end
-  
     end
 
     def create_array_of_hashes_projects

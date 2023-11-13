@@ -11,32 +11,36 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
+  <div class="row mb-3">
+    <div>
+    <%= form.text_field :first_name, :class => "form-control w-25", :placeholder => "First name" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div>
+    <%= form.text_field :last_name, :class => "form-control w-25", :placeholder => "Last name" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div>
+    <%= form.text_field :title, :class => "form-control w-25", :placeholder => "Title" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div>
+    <%= form.text_field :department, :class => "form-control w-25", :placeholder => "Department" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div>
+    <%= form.select :profile, {collection: ["user", "admin"]}, {class: "form-control w-25"}, {placeholder: "Profile"} %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
+  <div class="row mb-3">
+    <div>
+    <%= form.submit "Create user", :class => 'btn btn-info text-white' %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :department, style: "display: block" %>
-    <%= form.text_field :department %>
-  </div>
-
-  <div>
-    <%= form.label :profile, style: "display: block" %>
-    <%= form.text_field :profile %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

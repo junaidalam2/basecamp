@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects or /projects.json
   def index
     @projects = Project.all
+    #@back_button_switch = false
+
   end
 
   # GET /projects/1 or /projects/1.json

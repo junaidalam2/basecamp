@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   resources :projects
   resources :users
   # get 'home/index
+
+
   root 'home#index'
-  #get '/operations/landing/:id', to: 'operations#show', as: 'operations/landing'
+  
+    #get '/operations/landing/:id', to: 'operations#show', as: 'operations/landing'
   get '/operations/landing'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

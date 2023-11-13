@@ -17,14 +17,14 @@
       <tr>
         <%= render @project %>
         <div>
-            <td>
-              <%= button_to "Edit project", edit_project_path(@project), :method => "get" , class: 'btn btn-outline-secondary btn-sm'  %>
-            </td>
-            <td>
-              <%= button_to "Destroy project", @project, method: :delete, class: 'btn btn-outline-danger btn-sm'  %>
-            </td>
+          <td>
+            <%= button_to "Edit project", edit_project_path(@project), :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
+          </td>
+          <td>
+            <%= button_to "Destroy project", @project, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+          </td>
         </div>
       </tr>
     <tbody>
   </table>
-  <%= button_to "<< Back to projects", projects_path, :method => "get" , class: 'btn btn-primary' %>
+  <%= button_to "<< to projects", projects_path, :method => "get" , class: 'btn btn-primary' %>

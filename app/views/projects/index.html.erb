@@ -1,38 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="h2">Projects</h1>
+<h2 class="h2">Projects</h2>
 <br>
 
 
 
 
-  <table class="table table-striped table-bordered table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th>Project Name</th>
-        <th>Description</th>
-        <th>Timeframe for Completion</th>
-        <th>Creation Date</th>
-        <th>Project Lead</th>
-        <th>Show Project</th>
-      </tr>
-    </thead>
-
-
-   <tbody>
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Project Name</th>
+      <th>Description</th>
+      <th>Timeframe for Completion</th>
+      <th>Creation Date</th>
+      <th>Project Lead</th>
+      <th>Show Project</th>
+    </tr>
+  </thead>
+  <tbody>
     <div id="projects">
       <% @projects.each do |project| %>
         <tr>
-         <%= render project %>
+            <%= render project %>
           <td>
-            <%= button_to "Show project", project, :method => "get" , class: 'btn btn-outline-secondary btn-sm'  %>
+            <%= button_to "Show project", project, :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
           </td>
         </tr>
       <% end %>
     </div>
-
-
-    <tbody>
-  </table>
+  <tbody>
+</table>
 
 <%= button_to "New project", new_project_path, :method => "get" , class: 'btn btn-primary' %>

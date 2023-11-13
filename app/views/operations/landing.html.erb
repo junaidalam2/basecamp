@@ -1,15 +1,47 @@
-<h1> welcome! </h1>
 
 
-<h3>Projects</h3>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
+<h1 class="h1">Welcome! </h1>
 
-<%= link_to "New project", new_project_path %>
+<br>
+<h3 class="h3">Your Projects</h3>
+
+<% counter = 0 %>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Project Name</th>
+      <th>Description</th>
+      <th>Timeframe for Completion</th>
+      <th>Creation Date</th>
+      <th>Project Lead</th>
+      <th>Show Project</th>
+    </tr>
+  </thead>
+
+
+<tbody>
+  <div id="projects">
+    <% @projects.each do |project| %>
+      <% if project.user_id == session[:current_user_id] %>
+      <% counter += 1 %>
+        <tr>
+          <%= render project %>
+          <td>
+            <%= button_to "Show project", project, :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </div>
+  <tbody>
+</table>
+
+<% if counter == 0 %>
+  <i><%= "You have no projects." %></i>
+  <br>
+  <br>
+<% end %>
+
+<%= button_to "New project", new_project_path, :method => "get" , class: 'btn btn-primary' %>
