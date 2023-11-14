@@ -36,11 +36,20 @@
       <%= form.label :project_lead, style: "display: inline" %>
       &nbsp;
       <%= form.select :user_id, @user_array.map { |element| [element["full_name"], element["id"]] }, { include_blank: false }, { class: "form-select w-25", style: "display: inline" } %>
+
     </div>
   </div>
 
-  <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
+  <div class="row mb-3">
+    <div>
+      <%= form.label :status, style: "display: inline" %> 
+          &nbsp;
+      <%= form.select :status, [:Active, :Completed, :Inactive], {}, { class: "form-select w-25", style: "display: inline" } %> 
+    </div>
+  </div>
+
   
+  <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
   <div class="row mb-3">
     <div>
       <%= form.submit @submit_button_text, :class => 'btn btn-info text-white'%>

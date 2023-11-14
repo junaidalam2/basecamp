@@ -16,6 +16,9 @@
       <% user_instance = User.find(project.user_id) %>
       <%= user_instance.first_name%> <%= user_instance.last_name%>
     </td>
+    <td>
+      <%= project.status %>
+    </td>
 
 </div>
 
