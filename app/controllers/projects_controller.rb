@@ -17,15 +17,18 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     create_array_of_hashes_users() 
-
     @submit_button_text = "Create project"
-
+    @disable_status_field = true
   end
 
   # GET /projects/1/edit
   def edit
     create_array_of_hashes_users()
     @submit_button_text = "Update project"
+    @disable_status_field = true
+    if @project.user_id == session[:current_user_id]
+      @disable_status_field = false
+    end
   end
 
   # POST /projects or /projects.json
@@ -60,12 +63,18 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    @project.destroy
+    #@project.destroy
+
+    if @project.status != "Inactive"
+      @project.status = "Inactive"
+      @project.save
+    end
 
     respond_to do |format|
       format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
       format.json { head :no_content }
     end
+    
   end
 
 

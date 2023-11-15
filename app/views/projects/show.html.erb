@@ -1,6 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 
+  <% disabled_status = false %>
+  <% if @project.status == "Inactive" %>
+    <% disabled_status = true %>
+  <% end %>
+
+
   <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
@@ -11,7 +17,7 @@
         <th>Project Lead</th>
         <th>Status</th>
         <th>Edit Project</th>
-        <th>Destroy Project</th>
+        <th>Deactivate Project</th>
       </tr>
     </thead>
     <tbody>
@@ -19,10 +25,10 @@
         <%= render @project %>
         <div>
           <td>
-            <%= button_to "Edit project", edit_project_path(@project), :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
+            <%= button_to "Edit project", edit_project_path(@project), :method => "get" , class: 'btn btn-outline-secondary btn-sm', disabled: disabled_status %>
           </td>
           <td>
-            <%= button_to "Destroy project", @project, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+            <%= button_to "Deactivate project", @project, method: :delete, class: 'btn btn-outline-danger btn-sm', disabled: disabled_status %>
           </td>
         </div>
       </tr>

@@ -6,7 +6,7 @@
 <br>
 <h3>My Projects</h3>
 
-<% counter = 0 %>
+<% no_projects = true %>
 
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
@@ -26,7 +26,7 @@
   <div id="projects">
     <% @projects.each do |project| %>
       <% if project.user_id == session[:current_user_id] %>
-      <% counter += 1 %>
+      <% no_projects = false %>
         <tr>
           <%= render project %>
           <td>
@@ -39,7 +39,7 @@
   <tbody>
 </table>
 
-<% if counter == 0 %>
+<% if no_projects %>
   <i><%= "You have no projects." %></i>
   <br>
   <br>

@@ -11,15 +11,21 @@
     </div>
   <% end %>
 
+  <% disabled_status = false %>
+  <% if @project.status == "Inactive" %>
+    <% disabled_status = true %>
+    <% @disable_status_field = disabled_status %>
+  <% end %>
+
 
   <div class="row mb-3">
     <div>
-      <%= form.text_field :name, :class => "form-control w-50", :placeholder => "Project name" %>
+      <%= form.text_field :name, class: "form-control w-50", placeholder: "Project name", disabled: disabled_status %>
     </div>
   </div>
   <div class="row mb-3">
     <div>
-      <%= form.text_area :description, :class => "form-control w-50", :placeholder => "Description" %>
+      <%= form.text_area :description, class: "form-control w-50", placeholder: "Description", disabled: disabled_status %>
     </div>
   </div>
 
@@ -27,7 +33,7 @@
     <div>
       <%= form.label :time_frame_for_completion, style: "display: inline" %> 
       &nbsp;
-      <%= form.date_field :time_frame_for_completion, min: Date.today, :class => "form-control text-end w-25", :style => "display: inline" %>
+      <%= form.date_field :time_frame_for_completion, min: Date.today, class: "form-control text-end w-25", style: "display: inline", disabled: disabled_status %>
     </div>
   </div>
 
@@ -35,24 +41,25 @@
     <div>
       <%= form.label :project_lead, style: "display: inline" %>
       &nbsp;
-      <%= form.select :user_id, @user_array.map { |element| [element["full_name"], element["id"]] }, { include_blank: false }, { class: "form-select w-25", style: "display: inline" } %>
-
+      <%= form.select :user_id, @user_array.map { |element| [element["full_name"], element["id"]] }, { include_blank: false }, { class: "form-select w-25", style: "display: inline", disabled: disabled_status } %>
     </div>
   </div>
 
   <div class="row mb-3">
-    <div>
-      <%= form.label :status, style: "display: inline" %> 
+      <div>
+        <%= form.label :status, style: "display: inline" %> 
           &nbsp;
-      <%= form.select :status, [:Active, :Completed, :Inactive], {}, { class: "form-select w-25", style: "display: inline" } %> 
-    </div>
+        <%= form.select :status, [:Active, :Completed, :Inactive], {} , { class: "form-select w-25", style: "display: inline", disabled: @disable_status_field }%>
+          &nbsp;
+        <i>Project lead can edit status</i>
+      </div>
   </div>
 
   
   <%= form.hidden_field :creator_user_id, :value => session[:current_user_id] %> 
   <div class="row mb-3">
     <div>
-      <%= form.submit @submit_button_text, :class => 'btn btn-info text-white'%>
+      <%= form.submit @submit_button_text, class: "btn btn-info text-white", disabled: disabled_status %>
     </div>
   </div>
 

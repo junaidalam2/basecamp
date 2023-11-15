@@ -17,8 +17,18 @@
       <%= user_instance.first_name%> <%= user_instance.last_name%>
     </td>
     <td>
-      <%= project.status %>
+      <% if project.status == "Active" %>
+        <span class="badge rounded-pill text-bg-info text-white">
+          <%= project.status %>
+        </span>
+      <% elsif project.status == "Inactive" %>
+        <span class="badge rounded-pill text-bg-danger">
+          <%= project.status %>
+        </span>
+      <% else %>
+        <span class="badge rounded-pill text-bg-secondary">
+          <%= project.status %>
+        </span>
+      <% end %>
     </td>
-
 </div>
-
