@@ -5,6 +5,7 @@ class OperationsController < ApplicationController
     
     def landing
         @projects = Project.all
+
     end
 
 end

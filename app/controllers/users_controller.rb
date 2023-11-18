@@ -9,6 +9,13 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+
+    @user_deactivate_text = "Deactivate User"
+
+    if @user.deactivated && session[:is_admin]
+      @user_deactivate_text = "Activate User"
+    end
+
   end
 
   # GET /users/new
@@ -57,13 +64,19 @@ class UsersController < ApplicationController
     if !@user.deactivated
       @user.deactivated = true
       @user.save
+
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: "User was successfully deactivated." }
+        format.json { head :no_content }
+      end
+      after_sign_out_path_for(@user)
     end
     
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully deactivated." }
-      format.json { head :no_content }
+    if @user.deactivated && session[:is_admin]
+      @user.deactivated = false
+      @user.save
     end
-    after_sign_out_path_for(@user)
+
   end
 
   private

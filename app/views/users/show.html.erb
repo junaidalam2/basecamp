@@ -7,10 +7,11 @@
       <th>Last Name</th>
       <th>Title</th>
       <th>Department</th>
+      <th>Email</th>
       <th>Profile</th>
       <th>Status</th>
       <th>Edit User</th>
-      <th>Destroy User</th>
+      <th><%= @user_deactivate_text %></th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +22,7 @@
           <%= button_to "Edit user", edit_user_path(@user), :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
         </td>
         <td>
-          <%= button_to "Destroy user", @user, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+          <%= button_to  @user_deactivate_text, @user, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
         </td>
       </div>
     </tr>

@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
     create_array_of_hashes_users() 
     @submit_button_text = "Create project"
-    @disable_status_field = true
+    @disable_status_field = false
   end
 
   # GET /projects/1/edit
@@ -28,6 +28,13 @@ class ProjectsController < ApplicationController
     @disable_status_field = true
     if @project.user_id == session[:current_user_id]
       @disable_status_field = false
+    end
+
+
+    @disabled_status = false
+    if @project.status == "Inactive"
+      @disabled_status = true
+      @disable_status_field = @disabled_status
     end
   end
 
