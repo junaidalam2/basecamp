@@ -17,7 +17,7 @@
       <% character_min = "Password (%{min_length} characters minimum)" % {min_length: @minimum_password_length} %>
     <% end %>
     <%= f.password_field :password, autocomplete: "new-password", :placeholder => character_min, :class => "form-control w-25" %>
-    <p><span class="badge bg-secondary">(leave blank if you don't want to change it)</span></p>
+    <p><span class="badge bg-secondary">(leave blank if you don't want to change your password)</span></p>
   </div>
 
   <div class="row mb-3">

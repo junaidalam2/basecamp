@@ -72,9 +72,14 @@ class UsersController < ApplicationController
       after_sign_out_path_for(@user)
     end
     
-    if @user.deactivated && session[:is_admin]
+    if @user.deactivated
       @user.deactivated = false
       @user.save
+
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: "User was successfully reactivated." }
+        format.json { head :no_content }
+      end
     end
 
   end
