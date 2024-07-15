@@ -1,2 +1,13 @@
-<h1>Welcome to MyBasecamp!</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<center>
+    <h1 style="color:#50545c;">
+        <b>
+            Welcome to MyBasecamp!
+        </b>
+    </h1>
+    <span class="material-symbols-outlined" style="font-size: 20em; color:#0d6efd;">
+        landscape
+    </span>
+    <br>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-secondary" %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-secondary" %>
+</center> 

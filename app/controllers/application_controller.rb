@@ -10,21 +10,25 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
 
         
-
-        if !@user.deactivated
-            session[:current_user_id] = @user.id
-            session[:is_admin] = false 
-            
-            if @user.profile == 'admin'
-                session[:is_admin] = true
-            end
-
-            stored_location_for(resource) || operations_landing_path
-            
+        if current_user
+            root_path 
         else
-            flash[:notice] = "User was previously deactivated. Please contact your system administrator." 
-            after_sign_out_path_for(resource)
+            if !@user.deactivated
+                session[:current_user_id] = @user.id
+                session[:is_admin] = false 
+                
+                if @user.profile == 'admin'
+                    session[:is_admin] = true
+                end
+    
+                stored_location_for(resource) || operations_landing_path
+                
+            else
+                flash[:notice] = "User was previously deactivated. Please contact your system administrator." 
+                after_sign_out_path_for(resource)
+            end
         end
+
 
     end
 
@@ -62,5 +66,6 @@ class ApplicationController < ActionController::Base
         end
 
     end
+
 
 end
