@@ -12,7 +12,6 @@
       <th>Project Lead</th>
       <th>Status</th>
       <th>Show Project</th>
-      <th>Tasks</th>
     </tr>
   </thead>
   <tbody>
@@ -22,8 +21,6 @@
             <%= render project %>
           <td>
             <%= button_to "Show project", project, :method => "get" , class: 'btn btn-outline-secondary btn-sm' %>
-          </td>
-          <td>
           </td>
         </tr>
       <% end %>

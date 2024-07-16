@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
         
         if current_user
             root_path 
+            
         else
             if !@user.deactivated
                 session[:current_user_id] = @user.id
