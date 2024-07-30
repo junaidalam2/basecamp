@@ -93,7 +93,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :description, :time_frame_for_completion, :creation_date, :user_id, :creator_user_id, :status)
+      params.require(:project).permit(:name, :description, :time_frame_for_completion, :creation_date, :user_id, :creator_user_id, :status, issues_attributes: [:id, :short_description, :_destroy]  )
     end
 
     # Populate drop down for new and edit methods
